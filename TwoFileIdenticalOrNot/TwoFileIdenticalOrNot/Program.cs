@@ -23,15 +23,15 @@ namespace TwoFileIdenticalOrNot
             file1 = File.OpenRead("C:\\Konyvek\\test1.txt");
             dataFile1 = new byte[file1.Length];
             file1.Read(dataFile1, 0,  (int)file1.Length);
-            file1.Close();
+            
 
             //here you can change the Frist File (file2)
             file2 = File.OpenRead("C:\\Konyvek\\test2.txt");
             dataFile2 = new byte[file2.Length];
             file2.Read(dataFile2, 0, (int)file2.Length);
-            file2.Close();
             
-                if (file1.Length == file2.Length)
+            
+                if (dataFile1 == dataFile2)
                 {
                     for (int i = 0; i < dataFile1.Length; i++)
                     {
@@ -53,6 +53,8 @@ namespace TwoFileIdenticalOrNot
                 {
                     Console.WriteLine("The files are not identical!");
                 }
+                file1.Close();
+                file2.Close();
                 Console.ReadLine();
             } catch(ObjectDisposedException e)
             {
@@ -61,6 +63,7 @@ namespace TwoFileIdenticalOrNot
             {
                 Console.WriteLine("Error: {0}", e.Message);
             }
+            
             Console.ReadLine();
 
         }
